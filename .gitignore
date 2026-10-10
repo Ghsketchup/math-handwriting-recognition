@@ -1,0 +1,66 @@
+# Gradle files
+.gradle/
+build/
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+*.DS_Store
+
+# Android Studio generated files and folders
+.idea/
+.classpath
+.c9/
+*.class
+*.iml
+.settings/
+*.sublime-workspace
+
+# IntelliJ
+out/
+*.iws
+*.ipr
+*.iml
+
+# jenv
+.java-version
+
+# Keystore files
+.jks
+.keystore
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Android Profiler and Logcat
+androidStudioFirstRun.xml
+.cxx/
+*.externalNativeBuild
+.Android/
+
+# User-specific configurations
+.vscode/
+*.swp
+*.swo
+*~
+
+# ML Models (Large files)
+*.tflite
+*.onnx
+*.pb
+*.h5
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node
+node_modules/
+npm-debug.log
