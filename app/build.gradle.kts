@@ -1,1 +1,113 @@
-plugins {\n    id(\"com.android.application\") version \"8.1.2\"\n    kotlin(\"android\") version \"1.9.21\"\n    kotlin(\"kapt\") version \"1.9.21\"\n}\n\nandroid {\n    namespace = \"com.mathapp.recognition\"\n    compileSdk = 34\n\n    defaultConfig {\n        applicationId = \"com.mathapp.recognition\"\n        minSdk = 26\n        targetSdk = 34\n        versionCode = 1\n        versionName = \"1.0.0\"\n\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\n        vectorDrawables {\n            useSupportLibrary = true\n        }\n\n        ndk {\n            abiFilters.addAll(listOf(\"arm64-v8a\", \"armeabi-v7a\"))\n        }\n    }\n\n    buildTypes {\n        debug {\n            isMinifyEnabled = false\n            isDebuggable = true\n        }\n        release {\n            isMinifyEnabled = true\n            isDebuggable = false\n            proguardFiles(\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\n                \"proguard-rules.pro\"\n            )\n        }\n    }\n\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_17\n        targetCompatibility = JavaVersion.VERSION_17\n    }\n\n    kotlinOptions {\n        jvmTarget = \"17\"\n    }\n\n    buildFeatures {\n        compose = true\n        buildConfig = true\n    }\n\n    composeOptions {\n        kotlinCompilerExtensionVersion = \"1.5.8\"\n    }\n\n    packagingOptions {\n        resources {\n            excludes += \"/META-INF/{AL2.0,LGPL2.1}\"\n        }\n    }\n}\n\ndependencies {\n    // Jetpack Compose BOM\n    val composeBom = platform(\"androidx.compose:compose-bom:2023.10.01\")\n    implementation(composeBom)\n\n    // Core Android\n    implementation(\"androidx.core:core-ktx:1.12.0\")\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\n    implementation(\"com.google.android.material:material:1.10.0\")\n\n    // Lifecycle\n    implementation(\"androidx.lifecycle:lifecycle-runtime-ktx:2.6.2\")\n    implementation(\"androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2\")\n    implementation(\"androidx.lifecycle:lifecycle-runtime-compose:2.6.2\")\n\n    // Activity\n    implementation(\"androidx.activity:activity-compose:1.8.0\")\n\n    // Compose\n    implementation(\"androidx.compose.ui:ui\")\n    implementation(\"androidx.compose.ui:ui-graphics\")\n    implementation(\"androidx.compose.ui:ui-tooling-preview\")\n    implementation(\"androidx.compose.material3:material3:1.1.1\")\n    implementation(\"androidx.compose.material:material-icons-extended\")\n    debugImplementation(\"androidx.compose.ui:ui-tooling\")\n    debugImplementation(\"androidx.compose.ui:ui-test-manifest\")\n\n    // Navigation\n    implementation(\"androidx.navigation:navigation-compose:2.7.4\")\n\n    // Room Database\n    implementation(\"androidx.room:room-runtime:2.5.2\")\n    implementation(\"androidx.room:room-ktx:2.5.2\")\n    kapt(\"androidx.room:room-compiler:2.5.2\")\n\n    // ML - TensorFlow Lite (lightweight)\n    implementation(\"org.tensorflow:tensorflow-lite:2.13.0\")\n    implementation(\"org.tensorflow:tensorflow-lite-support:0.4.4\")\n\n    // Image processing - OpenCV (optional, can be removed)\n    // implementation(\"org.opencv:opencv-android:4.8.0\")\n\n    // Math\n    implementation(\"org.apache.commons:commons-math3:3.6.1\")\n\n    // Coroutines\n    implementation(\"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1\")\n    implementation(\"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1\")\n\n    // Dependency Injection - Hilt\n    implementation(\"com.google.dagger:hilt-android:2.48\")\n    kapt(\"com.google.dagger:hilt-compiler:2.48\")\n    implementation(\"androidx.hilt:hilt-navigation-compose:1.1.0\")\n\n    // JSON\n    implementation(\"com.google.code.gson:gson:2.10.1\")\n\n    // Logging\n    implementation(\"com.jakewharton.timber:timber:5.0.1\")\n\n    // Testing\n    testImplementation(\"junit:junit:4.13.2\")\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\n    androidTestImplementation(composeBom)\n    androidTestImplementation(\"androidx.compose.ui:ui-test-junit4\")\n}\n
+plugins {
+    id("com.android.application") version "8.1.2"
+    kotlin("android") version "1.9.21"
+    kotlin("kapt") version "1.9.21"
+}
+
+android {
+    namespace = "com.mathapp.recognition"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.mathapp.recognition"
+        minSdk = 26
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+
+    buildTypes {
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
+
+        release {
+            isMinifyEnabled = true
+            isDebuggable = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+}
+
+dependencies {
+    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
+    implementation(composeBom)
+
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+
+    implementation("androidx.activity:activity-compose:1.8.0")
+
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3:1.1.1")
+    implementation("androidx.compose.material:material-icons-extended")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.navigation:navigation-compose:2.7.4")
+
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
+
+    implementation("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+
+    implementation("org.apache.commons:commons-math3:3.6.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+}
